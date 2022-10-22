@@ -1,44 +1,43 @@
-<main>
-  <p id="notice"></p>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3">
-        <%= render 'books/userinfo', user: @booka.user, book: @book %>
-      </div>
-      <div class="col-md-8 offset-md-1">
-        <h2>Book detail</h2>
-        <table class="table">
-          <tbody>
-            <tr>
-              <td>
-                <%= link_to user_path(@booka.user.id) do %>
-                  <% if @booka.user.profile_image.attached? %>
-                    <%= image_tag @booka.user.profile_image, size: "100x100" %>
-                  <% else %>
-                    <%= image_tag "no_image", size: "100x100" %>
-                  <% end %>
-                  <br>
-                  <%= @booka.user.name %>
-                <% end %>
-              </td>
-              <td>
-                <%= link_to @booka.title, book_path(@booka.id) %>
-              </td>
-              <td>
-                <%= @booka.body %>
-              </td>
-              <% if @booka.user == current_user %>
-              <td>
-                <%= link_to "Edit", edit_book_path, class:"btn btn-sm btn-success edit_book_41142" %>
-              </td>
-              <td>
-                <%= link_to "Destroy", book_path(@booka.id), method: :delete, class:"btn btn-sm btn-danger destroy_book_41142", "data-confirm" => "本当に消しますか？" %>
-              </td>
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'books/userinfo', user: @booka.user, book: @book %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to user_path(@booka.user.id) do %>
+                <%= image_tag @booka.user.get_profile_image(100, 100) %>
+                <%# <% if @booka.user.profile_image.attached? %> 
+                  <%# <%= image_tag @booka.user.profile_image, size: "100x100" %>
+                <%# <% else %>
+                  <%# <%= image_tag "no_image", size: "100x100" %>
+                <%# <% end %>
+                <br>
+                <%= @booka.user.name %>
               <% end %>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+            </td>
+            <td>
+              <%= link_to @booka.title, book_path(@booka.id) %>
+            </td>
+            <td>
+              <%= @booka.body %>
+            </td>
+            <% if @booka.user == current_user %>
+            <td>
+              <%= link_to "Edit", edit_book_path, class:"btn btn-sm btn-success edit_book_41142" %>
+            </td>
+            <td>
+              <%= link_to "Destroy", book_path(@booka.id), method: :delete, class:"btn btn-sm btn-danger destroy_book_41142", "data-confirm" => "本当に消しますか？" %>
+            </td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-</main>
+</div>
